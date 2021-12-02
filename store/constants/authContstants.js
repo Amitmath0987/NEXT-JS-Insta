@@ -1,0 +1,10 @@
+export const LOGIN_SUBMIT = "LOGIN_SUBMIT";
+export const LOGOUT_USER = "LOGOUT_USER";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const REGISTER_SUBMIT = "REGISTER_SUBMIT";
+export const SET_LOADING = "SET_LOADING";
+export const SET_ERROR = "SET_ERROR";
+export const SET_AUTHENTICATED = "SET_AUTHENTICATED";
+export const SET_AUTH_STATE = "SET_AUTH_STATE";
+export const CLEAR_AUTH_STATE = "CLEAR_AUTH_STATE";
+export const TEST_REQUEST = "TEST_REQUEST";
