@@ -2,12 +2,15 @@ import "../styles/global.css";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
+import rootReducer from "redux/reducers";
+import rootSaga from "../redux/sagas/index";
+
 function MyApp({ Component, pageProps }) {
   const sagaMiddleware = createSagaMiddleware();
 
-  const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-  sagaMiddleware.run(helloSaga);
+  sagaMiddleware.run(rootSaga);
   return (
     <>
       <Provider store={store}>

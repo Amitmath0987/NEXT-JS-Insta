@@ -104,7 +104,7 @@ const Header = () => {
           </div>
           <button
             type="button"
-            class="text-white w-full py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-75  rounded-lg"
+            className="text-white w-full py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-75  rounded-lg"
           >
             Logout
           </button>

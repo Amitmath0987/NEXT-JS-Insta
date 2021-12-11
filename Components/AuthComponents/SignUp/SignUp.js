@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import leftBanner from "@assets/images/signinLeft.jpg";
 import styles from "../Auth.module.css";
@@ -6,6 +7,11 @@ import Link from "next/link";
 import instaTextLogo from "@assets/images/instaText.png";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [email, setEmail] = useState("");
+
   return (
     <div
       className="flex items-center justify-around h-screen
@@ -25,6 +31,8 @@ const SignUp = () => {
               className="rounded-2xl shadow-xl"
               src={leftBanner}
               layout="fill"
+              placeholder="blur"
+              priority="true"
             />
           </div>
         </div>
@@ -51,21 +59,27 @@ const SignUp = () => {
                   type="text"
                   placeholder="Name"
                   className="rounded-xl focus:ring-2 focus:ring-pink-600 "
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <input
                   type="email"
                   placeholder="Username/Email"
                   className="rounded-xl focus:ring-2 focus:ring-pink-600 "
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   className="rounded-xl focus:ring-2 focus:ring-pink-600 "
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <button
                   type="button"
-                  class="text-white py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-75  rounded-lg"
+                  className="text-white py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-75  rounded-lg"
                 >
                   SignUp
                 </button>

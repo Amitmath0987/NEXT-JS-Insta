@@ -1,7 +1,10 @@
-import { call, put, takeLatest } from "redux/saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { REGISTER_SUBMIT, SET_AUTH_STATE } from "../constants/authContstants";
-
-const userRegisteration = ({ payload }) => {};
+import { userRegistration } from "../../services/auth";
+const initialState = {
+  currentUser: {},
+};
+// const userRegisteration = ({ payload }) => {};
 export const auth = {
   effects: {
     *registerUser({ payload }) {
@@ -14,7 +17,7 @@ export const auth = {
       });
 
       try {
-        const res = yield call(userRegisteration, payload);
+        const res = yield call(userRegistration, payload);
       } catch (error) {
         console.log(error);
       }
@@ -26,6 +29,11 @@ export const auth = {
           value: false,
         },
       });
+    },
+  },
+  reducers: {
+    authReducers: (state = initialState, action) => {
+      return state;
     },
   },
 };
