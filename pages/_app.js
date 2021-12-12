@@ -1,6 +1,7 @@
 import "../styles/global.css";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import { promiseMiddleware } from '@adobe/redux-saga-promise'
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "redux/reducers";
 import rootSaga from "../redux/sagas/index";
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const middleWares = [sagaMiddleware];
   // const composeEnhancers =
   //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const store = createStore(rootReducer, {}, applyMiddleware(...middleWares));
+  const store = createStore(rootReducer, {}, applyMiddleware(promiseMiddleware,...middleWares));
 
   sagaMiddleware.run(rootSaga);
   return (

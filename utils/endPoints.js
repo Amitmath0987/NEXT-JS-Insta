@@ -36,7 +36,7 @@ const endPoints = {
   register: {
     method: "POST",
     ...defaults.versions.v1,
-    uri: "/auth/register",
+    uri: "/auth/signup",
     headerProps: {},
   },
 };

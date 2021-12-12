@@ -1,16 +1,40 @@
 import { useState } from "react";
 import Image from "next/image";
 import leftBanner from "@assets/images/signinLeft.jpg";
-import styles from "../Auth.module.css";
-
 import Link from "next/link";
 import instaTextLogo from "@assets/images/instaText.png";
+import { userRegistration } from "services/auth";
+import { Router, useRouter } from "next/router";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
   const [email, setEmail] = useState("");
+  // const dispatch = useDispatch();
+  const router = useRouter();
+
+  const registerUser = async () => {
+    // const res = await dispatch({
+    //   type: "REGISTER_SUBMIT",
+    //   payload: {
+    //     name,
+    //     email,
+    //     password,
+    //   },
+    // });
+    try {
+      const res = await userRegistration({
+        name,
+        email,
+        password,
+      });
+      router.push("/signin");
+    } catch (error) {
+      if (error?.data?.error?.message?.includes("already registered")) {
+        router.push("/signin");
+      }
+    }
+  };
 
   return (
     <div
@@ -80,6 +104,7 @@ const SignUp = () => {
                 <button
                   type="button"
                   className="text-white py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-75  rounded-lg"
+                  onClick={registerUser}
                 >
                   SignUp
                 </button>

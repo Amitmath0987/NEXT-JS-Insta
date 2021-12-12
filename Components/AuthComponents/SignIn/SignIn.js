@@ -2,27 +2,26 @@ import Image from "next/image";
 import leftBanner from "@assets/images/signinLeft.jpg";
 import styles from "../Auth.module.css";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 import instaTextLogo from "@assets/images/instaText.png";
+import { useState } from "react";
+import { createPromiseAction } from "@adobe/redux-saga-promise";
 
 const SignIn = () => {
-  // <div className=" h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500  p-10">
-  //   <div className="mx-24 bg-white h-full rounded-xl shadow-2xl flex justify-between items-center  p-10 ">
-  //     <div
-  //       className=""
-  //       style={{ height: "500px", width: "400px", position: "relative" }}
-  //     >
-  //       <Image
-  //         src={leftBanner}
-  //         className="rounded-2xl shadow-2xl"
-  //         // objectFit="contain"
-  //         layout="fill"
-  //       />
-  //     </div>
-  //     <div className="border-2 h-full ">
-  //       <h1 className={`${styles.formTitle} text-5xl`}>Instagram</h1>
-  //     </div>
-  //   </div>
-  // </div>
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+
+  export const myAction = createPromiseAction("LOGIN_SUBMIT");
+
+  const loginUser = async () => {
+    const res = await dispatch(
+      myAction({
+        email,
+        password,
+      })
+    ).then((res) => alert(1));
+  };
 
   return (
     <div
@@ -69,11 +68,15 @@ const SignIn = () => {
                   type="email"
                   placeholder="Username/Email"
                   className="rounded-xl focus:ring-2 focus:ring-pink-600 mb-4 "
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   className="rounded-xl focus:ring-2 focus:ring-pink-600 "
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex justify-end text-pink-700 underline">
                   <Link href="/forgot-password">Forgot Password</Link>
@@ -81,7 +84,13 @@ const SignIn = () => {
 
                 <button
                   type="button"
-                  className="text-white py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-75  rounded-lg"
+                  className={`text-white py-3 hover:opacity-75  rounded-lg ${
+                    email && password
+                      ? "bg-gradient-to-r from-purple-400 via-pink-500 to-red-500"
+                      : "bg-gray-200 text-black cursor-not-allowed"
+                  }`}
+                  onClick={loginUser}
+                  disabled={!(email && password)}
                 >
                   login
                 </button>

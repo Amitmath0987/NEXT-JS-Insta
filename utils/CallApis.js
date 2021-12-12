@@ -1,7 +1,8 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
 import queryString from "querystring";
-Axios.defaults.withCredentials = true;
+// Axios.defaults.withCredentials = true;
 
+import { errorSnackBar, successSnackBar } from "./snackBar";
 export const hostname = () => {
   let hostUrl = "";
   if (process.browser) {
@@ -75,6 +76,10 @@ export const callApi = ({
         if (response?.data?.accessToken) {
           localStorage.setItem("accessToken", response.data.accessToken);
         }
+        if (response?.config?.method === "post") {
+          successSnackBar(response?.data?.message);
+        }
+        console.log(response, "ApiResponse");
         resolve(response.data);
       })
       .catch((err) => {
@@ -85,6 +90,11 @@ export const callApi = ({
         if (err?.response?.status === 401) {
           // Unauthorized
           reject(err.response);
+        }
+        if (err?.response?.data?.error?.length) {
+          err?.response?.data?.error?.map((err) => errorSnackBar(err?.message));
+        } else {
+          errorSnackBar(err?.response?.data?.error?.message);
         }
         reject(err.response);
       });
