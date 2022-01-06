@@ -1,26 +1,35 @@
+import React from "react";
 import Image from "next/image";
 import leftBanner from "@assets/images/signinLeft.jpg";
-import styles from "../Auth.module.css";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import instaTextLogo from "@assets/images/instaText.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPromiseAction } from "@adobe/redux-saga-promise";
+import { useRouter } from "next/router";
+
+export const loginAction = createPromiseAction("LOGIN_SUBMIT");
 
 const SignIn = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
-  export const myAction = createPromiseAction("LOGIN_SUBMIT");
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.replace("/");
+    }
+  }, [isLoggedIn]);
 
   const loginUser = async () => {
-    const res = await dispatch(
-      myAction({
+    dispatch(
+      loginAction({
         email,
         password,
       })
-    ).then((res) => alert(1));
+    );
   };
 
   return (
@@ -34,14 +43,12 @@ const SignIn = () => {
           className="hidden w-6/12 h-full px-5 lg:block"
           // style={{ backgroundColor: "#C7E5FD" }}
         >
-          <div
-            className="relative flex items-center h-full"
-            style={{ height: "74vh" }}
-          >
+          <div className="relative flex items-center h-full">
             <Image
               className="rounded-2xl shadow-xl"
               src={leftBanner}
               layout="fill"
+              objectFit="cover"
             />
           </div>
         </div>
