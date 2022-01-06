@@ -1,4 +1,5 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
+import process from "process";
 import queryString from "querystring";
 // Axios.defaults.withCredentials = true;
 
@@ -73,8 +74,8 @@ export const callApi = ({
       data: body || undefined,
     })
       .then((response) => {
-        if (response?.data?.accessToken) {
-          localStorage.setItem("accessToken", response.data.accessToken);
+        if (response?.data?.token) {
+          localStorage.setItem("accessToken", response.data.token);
         }
         if (response?.config?.method === "post") {
           successSnackBar(response?.data?.message);

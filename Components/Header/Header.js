@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import instaTextLogo from "@assets/images/instaText.png";
 import instaLogo from "@assets/images/instagram-logo.png";

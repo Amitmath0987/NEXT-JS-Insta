@@ -39,6 +39,12 @@ const endPoints = {
     uri: "/auth/signup",
     headerProps: {},
   },
+  me: {
+    method: "GET",
+    ...defaults.versions.v1,
+    uri: "/me",
+    headerProps: {},
+  },
 };
 
 export default endPoints;

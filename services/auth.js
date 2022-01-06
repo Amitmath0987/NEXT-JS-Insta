@@ -8,7 +8,12 @@ export const userLogin = async (payload) =>
     },
     body: payload,
   });
-
+export const getCurrentUser = async () =>
+  callApi({
+    uriEndPoint: {
+      ...endPoints.me,
+    },
+  });
 // export const logoutUser = async (payload: any) =>
 //   callApi({
 //     uriEndPoint: {
