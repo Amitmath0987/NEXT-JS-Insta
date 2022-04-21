@@ -1,3 +1,4 @@
+import React from "react";
 import faker from "faker";
 import { useEffect, useState } from "react";
 import Story from "./Story/Story";
@@ -14,7 +15,7 @@ const Stories = () => {
   }, []);
   return (
     <div
-      className={`flex items-center space-x-4 p-6 shadow border-2 rounded bg-white my-6 overflow-x-scroll ${styles.storyWrapper}`}
+      className={`flex items-center space-x-4 p-6  border rounded bg-white my-6 overflow-x-scroll ${styles.storyWrapper}`}
     >
       {suggestionList?.map((user) => (
         <Story key={user?.id} avatar={user?.avatar} userName={user?.name} />

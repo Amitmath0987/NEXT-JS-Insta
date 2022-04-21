@@ -14,14 +14,15 @@ import {
 } from "@heroicons/react/outline";
 import UploadPost from "../UploadPost/UploadPost";
 import Drawer from "@components/Drawer/Drawer";
+import Link from "next/link";
 const Header = () => {
   const [showUploadPost, setShowUploadPost] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
   return (
-    <div className="shadow bg-white border-b sticky top-0 z-50">
-      <div className="flex justify-between items-center max-w-6xl mx-5 lg:mx-auto">
+    <div className=" bg-white border-b sticky top-0 z-50">
+      <div className="flex justify-between items-center max-w-5xl mx-5 lg:mx-auto">
         <div className="cursor-pointer">
-          <div className="relative h-24 w-24 hidden lg:inline-grid">
+          <div className="relative h-10 w-24 hidden lg:inline-grid">
             <Image
               src={instaTextLogo}
               alt="Instagram"
@@ -62,7 +63,9 @@ const Header = () => {
             className="navBtn"
             onClick={() => setShowUploadPost(true)}
           />
-          <UserGroupIcon className="navBtn" />
+          <Link href={`/post/${22}`}>
+            <UserGroupIcon className="navBtn" />
+          </Link>
           <HeartIcon className="navBtn" />
           {/* <img
           src={myPic}

@@ -39,7 +39,6 @@ function MyApp({ Component, pageProps }) {
     {},
     applyMiddleware(promiseMiddleware, ...middleWares)
   );
-
   sagaMiddleware.run(rootSaga);
 
   return (

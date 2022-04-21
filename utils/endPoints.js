@@ -45,6 +45,11 @@ const endPoints = {
     uri: "/me",
     headerProps: {},
   },
+  createPost: {
+    method: "POST",
+    ...defaults.versions.v1,
+    uri: "/post/create",
+  },
 };
 
 export default endPoints;

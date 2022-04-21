@@ -1,6 +1,6 @@
+import React from "react";
 import {
   BookmarkIcon,
-  BookOpenIcon,
   ChatIcon,
   DotsHorizontalIcon,
   EmojiHappyIcon,
@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const Post = ({ id, userImage, userName, img, caption }) => {
   return (
-    <div className="bg-white rounded my-7 shadow">
+    <div className="bg-white rounded my-7 border">
       {/* header */}
       <div className="flex items-center p-5">
         {/* <img
